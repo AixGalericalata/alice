@@ -65,7 +65,7 @@ def handle_dialog(req, res):
             good = goods.pop(0)
             res['response']['text'] = f'{good.capitalize()} можно найти на Яндекс.Маркете!'
             if goods:
-                res['response']['text'] += f'\nА ещё купи {goods[0]}'
+                res['response']['text'] += f'\nА ещё купи {goods[0]}.'
             else:
                 res['response']['end_session'] = True
             return
@@ -89,7 +89,7 @@ def get_suggests(user_id):
     if len(suggests) < 2:
         suggests.append({
             "title": "Ладно",
-            "url": "https://market.yandex.ru/search?text=слон",
+            "url": f"https://market.yandex.ru/search?text={goods[0]}",
             "hide": True
         })
 
