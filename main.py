@@ -63,15 +63,15 @@ def handle_dialog(req, res):
     ]:
         if word in user_req:
             good = goods.pop(0)
-            res['response']['text'] = f'{good} можно найти на Яндекс.Маркете!'
+            res['response']['text'] = f'{good.capitalize()} можно найти на Яндекс.Маркете!'
             if goods:
-                res['response']['text'] += f'А ещё купи {goods[0]}'
+                res['response']['text'] += f'\nА ещё купи {goods[0]}'
             else:
                 res['response']['end_session'] = True
             return
 
     res['response']['text'] = \
-        f"Все говорят '{req['request']['original_utterance']}', а ты купи слона!"
+        f"Все говорят '{req['request']['original_utterance']}', а ты купи {goods[0]}!"
     res['response']['buttons'] = get_suggests(user_id)
 
 
