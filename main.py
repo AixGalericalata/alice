@@ -40,6 +40,7 @@ def index():
 
 
 def handle_dialog(req, res):
+    global goods
     user_id = req['session']['user_id']
 
     if req['session']['new']:
@@ -68,6 +69,7 @@ def handle_dialog(req, res):
                 res['response']['text'] += f'\nА ещё купи {goods[0]}.'
             else:
                 res['response']['end_session'] = True
+                goods = ['слона', 'кролика']
             return
 
     res['response']['text'] = \
