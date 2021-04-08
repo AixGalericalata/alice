@@ -29,6 +29,12 @@ def main():
     return json.dumps(response)
 
 
+@app.route('/')
+@app.route('/index')
+def index():
+    return "Привет, Яндекс!"
+
+
 def handle_dialog(req, res):
     user_id = req['session']['user_id']
 
