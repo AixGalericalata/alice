@@ -11,7 +11,7 @@ logging.basicConfig(level=logging.INFO)
 
 sessionStorage = {}
 
-goods = ['слон', 'кролик']
+goods = ['слона', 'кролика']
 
 
 @app.route('/post', methods=['POST'])
