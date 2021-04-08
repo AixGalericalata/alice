@@ -11,6 +11,8 @@ logging.basicConfig(level=logging.INFO)
 
 sessionStorage = {}
 
+goods = ['слон', 'кролик']
+
 
 @app.route('/post', methods=['POST'])
 def main():
@@ -48,9 +50,7 @@ def handle_dialog(req, res):
                 "Отстань!",
             ]
         }
-        # Заполняем текст ответа
-        res['response']['text'] = 'Привет! Купи слона!'
-        # Получим подсказки
+        res['response']['text'] = f'Привет! Купи {goods[0]}!'
         res['response']['buttons'] = get_suggests(user_id)
         return
 
@@ -62,9 +62,12 @@ def handle_dialog(req, res):
         'хорошо'
     ]:
         if word in user_req:
-
-            res['response']['text'] = 'Слона можно найти на Яндекс.Маркете!'
-            res['response']['end_session'] = True
+            good = goods.pop(0)
+            res['response']['text'] = f'{good} можно найти на Яндекс.Маркете!'
+            if goods:
+                res['response']['text'] += f'А ещё купи {goods[0]}'
+            else:
+                res['response']['end_session'] = True
             return
 
     res['response']['text'] = \
